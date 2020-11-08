@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.List;
 
 public class Grid {
@@ -9,6 +10,15 @@ public class Grid {
 
     int WIDTH = 30;
     int HEIGHT = 30;
+
+    public Grid() {
+        this.board = new Square[WIDTH][HEIGHT];
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                board[x][y] = new Square(x, y);
+            }
+        }
+    }
 
     /**
      * for GardenView
