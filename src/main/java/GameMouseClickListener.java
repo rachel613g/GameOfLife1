@@ -11,9 +11,7 @@ public class GameMouseClickListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
         super.mouseClicked(e);
-        System.out.println("Testing mouse click coords.");
-        System.out.println("x: " + e.getX() + ", y: " + e.getY());
-        e.translatePoint(-30, -30);
-        System.out.println("translated x: " + e.getX() + ", translated y: " + e.getY());
+        //translate e's x,y coords to our grid
+        grid.toggleSquare(e.getX()/grid.WIDTH, e.getY()/grid.HEIGHT);
     }
 }
