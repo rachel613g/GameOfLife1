@@ -41,4 +41,12 @@ public class Square {
             }
         }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Square)) return false;
+        Square segment = (Square) o;
+        return x == segment.x &&
+                y == segment.y;
+    }
 }

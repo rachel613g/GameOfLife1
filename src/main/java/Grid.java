@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -5,8 +6,7 @@ public class Grid {
 
     private Square[][] board;
 
-    private List<Square> aliveSquares;
-    private List<Square> deadSquares;
+    private List<Square> aliveSquares = new ArrayList<>();
 
     int WIDTH = 30;
     int HEIGHT = 30;
@@ -39,6 +39,7 @@ public class Grid {
      */
     public void toggleSquare(int x, int y) {
         this.board[x][y].toggleSquare();
+        aliveSquares.add(this.board[x][y]);
     }
 
     /**
