@@ -6,7 +6,7 @@ public class GameFrame extends JFrame {
     public GameFrame(GridView gridView) {
         super();
 
-        setSize(800,400);
+        setSize(815,500);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game of Life");
         setLayout(new BorderLayout());
