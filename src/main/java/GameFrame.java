@@ -8,6 +8,7 @@ public class GameFrame extends JFrame {
                 GridView gridView,
                 GameMouseClickListener mouseClickListener) {
         super();
+
         setSize(815, 480);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

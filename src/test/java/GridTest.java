@@ -68,8 +68,8 @@ public class GridTest {
         grid.clearGrid();
 
         //then
-        for (int y = 0; y < board.length; y++) {
-            for (int x = 0; x < board[y].length; x++) {
+        for (int y = 0; y < grid.HEIGHT; y++) {
+            for (int x = 0; x < grid.WIDTH; x++) {
                 assertFalse(board[x][y].isAlive());
             }
         }
