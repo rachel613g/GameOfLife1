@@ -1,12 +1,12 @@
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Grid {
 
     private Square[][] board;
-
-    private List<Square> aliveSquares;
-    private List<Square> deadSquares;
+    private final Direction[] directions = Direction.values();
+    private final List<Square> aliveSquares = new ArrayList<>();
+    private final List<Square> deadSquares = new ArrayList<>();
 
     int CELL_DIMENSIONS = 20;
     int WIDTH = 40; //num columns of grid
@@ -40,6 +40,7 @@ public class Grid {
      */
     public void toggleSquare(int x, int y) {
         this.board[x][y].toggleSquare();
+        aliveSquares.add(this.board[x][y]);
     }
 
     /**
@@ -60,9 +61,10 @@ public class Grid {
     public void getNextGeneration() {
         Square[][] newBoard = new Square[WIDTH][HEIGHT];
         aliveSquares.clear();
+        deadSquares.clear();
 
-        for (int y = 0; y < HEIGHT; y++) {
-            for (int x = 0; x < WIDTH; x++) {
+        for (int y = 0; y < newBoard.length; y++) {
+            for (int x = 0; x < newBoard[y].length; x++) {
                 Square square = board[x][y];
                 newBoard[x][y] = setSquare(square);
             }
@@ -72,28 +74,32 @@ public class Grid {
 
     private Square setSquare(Square square) {
         int numAliveNeighbours = countAliveNeighbours(square);
+        Square newSquare = new Square(square);
 
         if (square.isAlive()) { //if current square is alive
             if (numAliveNeighbours == 2 || numAliveNeighbours == 3) {
                 aliveSquares.add(square);
-                square.setAlive();
+                newSquare.setAlive();
             } else {
-                square.setDead();
+                newSquare.setDead();
             }
         } else { //if current square is dead
             if (numAliveNeighbours == 3) {
                 aliveSquares.add(square);
-                square.setAlive();
+                newSquare.setAlive();
             }
         }
 
-        return square;
+        return newSquare;
     }
 
     private int countAliveNeighbours(Square square) {
         int numNeighborsAlive = 0;
-        Square[] neighborsToCheck = getNeighbors(square);
-        for ( Square s : neighborsToCheck) {
+        List<Square> neighborsToCheck = getNeighbors(square);
+        if (square.getY() == 3 && square.getX() == 3){
+            System.out.println(neighborsToCheck);
+        }
+        for (Square s : neighborsToCheck) {
             if (s.isAlive()) {
                 numNeighborsAlive++;
             }
@@ -101,15 +107,61 @@ public class Grid {
         return numNeighborsAlive;
     }
 
-    private Square[] getNeighbors(Square square) {
-        return new Square[] {this.board[square.getX()][square.getY() - 1], //North
-                this.board[square.getX() + 1][square.getY() - 1], //NorthEast
-                this.board[square.getX() + 1][square.getY()], //East
-                this.board[square.getX() + 1][square.getY() + 1], //SouthEast
-                this.board[square.getX()][square.getY() + 1], //South
-                this.board[square.getX() - 1][square.getY() + 1], //SouthWest
-                this.board[square.getX() - 1][square.getY()], //West
-                this.board[square.getX() + 1][square.getY() - 1]}; //NorthWest
+    private List<Square> getNeighbors(Square square) {
+        List<Square> neighbors = new ArrayList<>();
+
+        int x = square.getX();
+        int y = square.getY();
+
+        int newX = 0;
+        int newY = 0;
+
+        for (Direction d: directions) {
+            switch (d) {
+                case North:
+                    newX = x;
+                    newY = y-1;
+                    break;
+                case NorthEast:
+                    newX = x + 1;
+                    newY = y - 1;
+                    break;
+                case East:
+                    newX = x + 1;
+                    newY = y;
+                    break;
+                case SouthEast:
+                    newX = x + 1;
+                    newY = y + 1;
+                    break;
+                case South:
+                    newX = x;
+                    newY = y + 1;
+                    break;
+                case SouthWest:
+                    newX = x - 1;
+                    newY = y + 1;
+                    break;
+                case West:
+                    newX = x - 1;
+                    newY = y;
+                    break;
+                case NorthWest:
+                    newX = x - 1;
+                    newY = y - 1;
+                    break;
+                default:
+                    throw new RuntimeException(d + " is not a Direction");
+            }
+            if(isInBounds(newX, newY)){
+                neighbors.add(board[newX][newY]);
+            }
+        }
+        return neighbors;
+    }
+
+    private boolean isInBounds(int x, int y) {
+        return x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT;
     }
 }
 
