@@ -8,8 +8,9 @@ public class Grid {
     private final List<Square> aliveSquares = new ArrayList<>();
     private final List<Square> deadSquares = new ArrayList<>();
 
-    int WIDTH = 30;
-    int HEIGHT = 30;
+    int CELL_DIMENSIONS = 20;
+    int WIDTH = 40; //num columns of grid
+    int HEIGHT = 20; //num rows of grid
 
     public Grid() {
         this.board = new Square[WIDTH][HEIGHT];
