@@ -4,7 +4,7 @@ import java.awt.*;
 public class GridView extends JComponent {
 
     private Grid grid;
-    public static final int SPACING_BETWEEN_CELLS = 2;
+    public static final int SPACING_BETWEEN_CELLS = 1;
 
     public GridView(Grid grid) {
         this.grid = grid;
