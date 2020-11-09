@@ -4,7 +4,6 @@ import java.awt.*;
 public class GameFrame extends JFrame {
     JButton nextButton;
 
-
     public GameFrame(Grid grid,
                 GridView gridView,
                 GameMouseClickListener mouseClickListener) {
