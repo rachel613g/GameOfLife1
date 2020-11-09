@@ -33,7 +33,7 @@ public class Square {
             return isAlive;
         }
 
-        public  void toggleSquare() {
+        public void toggleSquare() {
             if (this.isAlive) {
                 this.setDead();
             } else {
