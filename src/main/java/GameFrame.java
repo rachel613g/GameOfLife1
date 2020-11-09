@@ -8,7 +8,6 @@ public class GameFrame extends JFrame {
     private Grid grid;
     private Dimension buttonMaxSize;
 
-
     public GameFrame(Grid grid,
                 GridView gridView,
                 GameMouseClickListener mouseClickListener) {

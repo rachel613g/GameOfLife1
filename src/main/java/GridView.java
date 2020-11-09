@@ -4,8 +4,7 @@ import java.awt.*;
 public class GridView extends JComponent {
 
     private Grid grid;
-    public static final int CELL_SIZE = 40;
-    public static final int SPACING_BETWEEN_CELLS = 2;
+    public static final int SPACING_BETWEEN_CELLS = 1;
 
     public GridView(Grid grid) {
         this.grid = grid;
@@ -19,8 +18,8 @@ public class GridView extends JComponent {
 
     void paintGrid(Graphics g) {
         Square[][] board = grid.getBoard();
-        for (int y = 0; y < board.length; y++) {
-            for (int x = 0; x < board[y].length; x++) {
+        for (int y = 0; y < grid.HEIGHT; y++) {
+            for (int x = 0; x < grid.WIDTH; x++) {
                 Square s = board[x][y];
                 if (s.isAlive()) {
                     g.setColor(Color.YELLOW);
@@ -28,10 +27,10 @@ public class GridView extends JComponent {
                 else {
                     g.setColor(Color.LIGHT_GRAY);
                 }
-                g.fillRect(SPACING_BETWEEN_CELLS+s.getX()*CELL_SIZE,
-                        SPACING_BETWEEN_CELLS+s.getY()*CELL_SIZE,
-                        CELL_SIZE-SPACING_BETWEEN_CELLS*SPACING_BETWEEN_CELLS,
-                        CELL_SIZE-SPACING_BETWEEN_CELLS*SPACING_BETWEEN_CELLS);
+                g.fillRect(SPACING_BETWEEN_CELLS+s.getX()*grid.CELL_DIMENSIONS,
+                           SPACING_BETWEEN_CELLS+s.getY()*grid.CELL_DIMENSIONS,
+                        grid.CELL_DIMENSIONS-SPACING_BETWEEN_CELLS*SPACING_BETWEEN_CELLS,
+                        grid.CELL_DIMENSIONS-SPACING_BETWEEN_CELLS*SPACING_BETWEEN_CELLS);
             }
         }
 
