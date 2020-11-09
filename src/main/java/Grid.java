@@ -63,8 +63,8 @@ public class Grid {
         aliveSquares.clear();
         deadSquares.clear();
 
-        for (int y = 0; y < newBoard.length; y++) {
-            for (int x = 0; x < newBoard[y].length; x++) {
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
                 Square square = board[x][y];
                 newBoard[x][y] = setSquare(square);
             }
