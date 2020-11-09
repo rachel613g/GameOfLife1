@@ -8,7 +8,8 @@ public class GameFrame extends JFrame {
                 GridView gridView,
                 GameMouseClickListener mouseClickListener) {
         super();
-        setSize(800, 400);
+        setSize(815,500);
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game of Life");
         setLayout(new BorderLayout());

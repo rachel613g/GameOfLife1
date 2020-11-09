@@ -8,16 +8,9 @@ public class Grid {
     private final List<Square> aliveSquares = new ArrayList<>();
     private final List<Square> deadSquares = new ArrayList<>();
 
-    public int getWIDTH() {
-        return WIDTH;
-    }
-
-    public int getHEIGHT() {
-        return HEIGHT;
-    }
-
-    private int WIDTH = 30;
-    private int HEIGHT = 30;
+    int CELL_DIMENSIONS = 20;
+    int WIDTH = 40; //num columns of grid
+    int HEIGHT = 20; //num rows of grid
 
     public Grid() {
         this.board = new Square[WIDTH][HEIGHT];
@@ -169,6 +162,14 @@ public class Grid {
 
     private boolean isInBounds(int x, int y) {
         return x >= 0 && y >= 0 && x < WIDTH && y < HEIGHT;
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
+    }
+
+    public int getHEIGHT() {
+        return HEIGHT;
     }
 }
 
