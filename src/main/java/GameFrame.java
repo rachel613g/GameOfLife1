@@ -4,13 +4,12 @@ import java.awt.*;
 public class GameFrame extends JFrame {
     JButton nextButton;
 
-
-
     public GameFrame(Grid grid,
                 GridView gridView,
                 GameMouseClickListener mouseClickListener) {
         super();
-        setSize(815,500);
+
+        setSize(815, 480);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game of Life");
