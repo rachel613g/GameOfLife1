@@ -19,8 +19,8 @@ public class GameMouseClickListener extends MouseAdapter {
         //x = e.getX();
         //y = e.getY();
         //System.out.println("Mouse click at " + x + ", " + y);
-        x = x / grid.getWIDTH();
-        y = y / grid.getHEIGHT();
+        x = x / grid.CELL_DIMENSIONS;
+        y = y / grid.CELL_DIMENSIONS;
         grid.toggleSquare(x, y);
         gridView.repaint();
     }
