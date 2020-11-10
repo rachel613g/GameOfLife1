@@ -96,9 +96,6 @@ public class Grid {
     private int countAliveNeighbours(Square square) {
         int numNeighborsAlive = 0;
         List<Square> neighborsToCheck = getNeighbors(square);
-        if (square.getY() == 3 && square.getX() == 3){
-            System.out.println(neighborsToCheck);
-        }
         for (Square s : neighborsToCheck) {
             if (s.isAlive()) {
                 numNeighborsAlive++;

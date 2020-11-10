@@ -8,10 +8,15 @@ public class GameMouseClickListener extends MouseAdapter {
         this.grid = grid;
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        super.mouseClicked(e);
-        //translate e's x,y coords to our grid
-        grid.toggleSquare(e.getX()/grid.WIDTH, e.getY()/grid.HEIGHT);
+    public void clickGridView (MouseEvent e) {
+        try {
+            int x = e.getX() / grid.CELL_DIMENSIONS;
+            int y = e.getY() / grid.CELL_DIMENSIONS;
+
+            grid.toggleSquare(x, y);
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 }
