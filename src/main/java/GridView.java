@@ -36,5 +36,3 @@ public class GridView extends JComponent {
 
     }
 }
-
-//Don't forget Test
