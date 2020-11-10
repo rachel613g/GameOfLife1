@@ -3,7 +3,7 @@ public class Main {
         Grid grid = new Grid();
         GridView gridView = new GridView(grid);
 
-        GameMouseClickListener mouseClickListener = new GameMouseClickListener(grid);
+        GameMouseClickListener mouseClickListener = new GameMouseClickListener(grid, gridView);
         new GameFrame(grid, gridView, mouseClickListener).setVisible(true);
     }
 
