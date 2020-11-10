@@ -1,12 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GameFrame extends JFrame {
     private JButton nextButton;
     private JButton clearButton;
     private JPanel buttonPanel;
     private Grid grid;
-    private Dimension buttonMaxSize;
+    private final Dimension buttonMaxSize =  new Dimension(20, 20);
 
     public GameFrame(Grid grid,
                 GridView gridView,
@@ -20,8 +22,15 @@ public class GameFrame extends JFrame {
         setTitle("Game of Life");
         setLayout(new BorderLayout());
         add(gridView, BorderLayout.CENTER);
-        addMouseListener(mouseClickListener);
 
+        gridView.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                mouseClickListener.clickGridView(e);
+                repaint();
+            }
+        });
         addButtonPanel();
         addNextButton();
         addClearButton();
@@ -36,18 +45,21 @@ public class GameFrame extends JFrame {
     private void addClearButton() {
         clearButton = new JButton("clear");
         clearButton.setMaximumSize(buttonMaxSize);
-        clearButton.addActionListener(actionEvent -> grid.clearGrid());
+        clearButton.addActionListener(actionEvent -> {
+            grid.clearGrid();
+            repaint();
+        });
         buttonPanel.add(clearButton);
     }
 
     private void addNextButton() {
         nextButton = new JButton("next-->");
-        buttonMaxSize = new Dimension(20, 20);
         nextButton.setMaximumSize(buttonMaxSize);
+        nextButton.addActionListener(actionEvent -> {
+            grid.getNextGeneration();
+            repaint();
+        });
         buttonPanel.add(nextButton);
-        nextButton.addActionListener(actionEvent -> grid.getNextGeneration());
     }
 }
-
-//Don't forget Test for Listener class
 
