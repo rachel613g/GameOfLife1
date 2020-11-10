@@ -6,6 +6,7 @@ public class GameFrame extends JFrame {
     private JButton clearButton;
     private JPanel buttonPanel;
     private Grid grid;
+    private GridView gridView;
     private Dimension buttonMaxSize;
 
     public GameFrame(Grid grid,
@@ -14,6 +15,7 @@ public class GameFrame extends JFrame {
         super();
 
         this.grid = grid;
+        this.gridView = gridView;
 
         setSize(800, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -36,8 +38,13 @@ public class GameFrame extends JFrame {
     private void addClearButton() {
         clearButton = new JButton("clear");
         clearButton.setMaximumSize(buttonMaxSize);
-        clearButton.addActionListener(actionEvent -> grid.clearGrid());
+        clearButton.addActionListener(actionEvent -> clearClicked());
         buttonPanel.add(clearButton);
+    }
+
+    private void clearClicked() {
+        grid.clearGrid();
+        gridView.repaint();
     }
 
     private void addNextButton() {
@@ -45,7 +52,12 @@ public class GameFrame extends JFrame {
         buttonMaxSize = new Dimension(20, 20);
         nextButton.setMaximumSize(buttonMaxSize);
         buttonPanel.add(nextButton);
-        nextButton.addActionListener(actionEvent -> grid.getNextGeneration());
+        nextButton.addActionListener(actionEvent -> nextClicked());
+    }
+
+    private void nextClicked() {
+        grid.getNextGeneration();
+        gridView.repaint();
     }
 }
 
