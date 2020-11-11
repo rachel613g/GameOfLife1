@@ -7,6 +7,7 @@ public class Grid {
     private final Direction[] directions = Direction.values();
     private final List<Square> aliveSquares = new ArrayList<>();
     private final List<Square> deadSquares = new ArrayList<>();
+    public boolean run;
 
     int CELL_DIMENSIONS = 20;
     int WIDTH = 40; //num columns of grid
@@ -20,6 +21,18 @@ public class Grid {
             }
         }
     }
+
+    public Boolean getRun() {
+        return run;
+    }
+
+    public void setRun(boolean bool) {
+        run = true;
+        if (bool == false) {
+            run = false;
+        }
+    }
+
 
     /**
      * for GardenView

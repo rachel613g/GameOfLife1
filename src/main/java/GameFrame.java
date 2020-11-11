@@ -6,16 +6,22 @@ import java.awt.event.MouseEvent;
 public class GameFrame extends JFrame {
     private JButton nextButton;
     private JButton clearButton;
+    private JButton playButton;
+    private JButton stopButton;
     private JPanel buttonPanel;
+
     private Grid grid;
+    private GridThread gridThread;
     private final Dimension buttonMaxSize =  new Dimension(20, 20);
 
     public GameFrame(Grid grid,
                 GridView gridView,
-                GameMouseClickListener mouseClickListener) {
+                GameMouseClickListener mouseClickListener,
+                     GridThread gridThread) {
         super();
 
         this.grid = grid;
+        this.gridThread = gridThread;
 
         setSize(815, 480);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -34,6 +40,8 @@ public class GameFrame extends JFrame {
         addButtonPanel();
         addNextButton();
         addClearButton();
+        addPlayButton();
+        addStopButton();
     }
 
     private void addButtonPanel() {
@@ -61,5 +69,26 @@ public class GameFrame extends JFrame {
         });
         buttonPanel.add(nextButton);
     }
+
+    private void addPlayButton() {
+        playButton = new JButton("play-->");
+        playButton.setMaximumSize(buttonMaxSize);
+        playButton.addActionListener(actionEvent -> {
+            grid.setRun(true);
+            gridThread.run();
+        });
+        buttonPanel.add(playButton);
+    }
+
+    private void addStopButton() {
+        stopButton = new JButton("stop");
+        stopButton.setMaximumSize(buttonMaxSize);
+        stopButton.addActionListener(actionEvent -> {
+            grid.setRun(false);
+            repaint();
+        });
+        buttonPanel.add(stopButton);
+    }
+
 }
 

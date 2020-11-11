@@ -4,7 +4,10 @@ public class Main {
         GridView gridView = new GridView(grid);
 
         GameMouseClickListener mouseClickListener = new GameMouseClickListener(grid);
-        new GameFrame(grid, gridView, mouseClickListener).setVisible(true);
+        GridThread gridThread = new GridThread(grid, gridView);
+        GameFrame frame = new GameFrame(grid, gridView, mouseClickListener, gridThread);
+
+        frame.setVisible(true);
     }
 
 }
