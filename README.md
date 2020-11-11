@@ -6,3 +6,4 @@ Rachel Gutmann (https://github.com/rachel613g)
 Lillian Liebman (https://github.com/lliebman)  
 Sara Orlian (https://github.com/SaraOrlian)
 
+![Alt](screenshots/GameOfLifeScreenshot.png "Game of Life Screenshot")
