@@ -6,4 +6,4 @@
 .idea
 .gradle
 build/*
-!build/libs 
+!build/libs
