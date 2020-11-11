@@ -17,7 +17,7 @@ public class GameFrame extends JFrame {
 
         this.grid = grid;
 
-        setSize(800, 400);
+        setSize(815, 480);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Game of Life");
         setLayout(new BorderLayout());
