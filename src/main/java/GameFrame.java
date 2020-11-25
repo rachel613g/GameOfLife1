@@ -12,11 +12,10 @@ public class GameFrame extends JFrame {
 
     private Grid grid;
     private GridThread gridThread;
-    private final Dimension buttonMaxSize =  new Dimension(20, 20);
+    private final Dimension buttonMaxSize = new Dimension(20, 20);
 
     public GameFrame(Grid grid,
-                GridView gridView,
-                GameMouseClickListener mouseClickListener,
+                     GridView gridView,
                      GridThread gridThread) {
         super();
 
@@ -33,7 +32,7 @@ public class GameFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                mouseClickListener.clickGridView(e);
+                clickGridView(e);
                 repaint();
             }
         });
@@ -42,6 +41,18 @@ public class GameFrame extends JFrame {
         addClearButton();
         addPlayButton();
         addStopButton();
+    }
+
+    private void clickGridView(MouseEvent e) {
+        try {
+            //translates mouse position x,y into Grid's x,y
+            int x = e.getX() / grid.CELL_DIMENSIONS;
+            int y = e.getY() / grid.CELL_DIMENSIONS;
+
+            grid.toggleSquare(x, y);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     private void addButtonPanel() {
@@ -89,6 +100,5 @@ public class GameFrame extends JFrame {
         });
         buttonPanel.add(stopButton);
     }
-
 }
 

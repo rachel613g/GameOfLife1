@@ -3,11 +3,9 @@ public class Main {
         Grid grid = new Grid();
         GridView gridView = new GridView(grid);
 
-        GameMouseClickListener mouseClickListener = new GameMouseClickListener(grid);
         GridThread gridThread = new GridThread(grid, gridView);
-        GameFrame frame = new GameFrame(grid, gridView, mouseClickListener, gridThread);
+        GameFrame frame = new GameFrame(grid, gridView, gridThread);
 
         frame.setVisible(true);
     }
-
 }
