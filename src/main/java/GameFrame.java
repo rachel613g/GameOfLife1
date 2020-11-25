@@ -75,7 +75,7 @@ public class GameFrame extends JFrame {
         playButton.setMaximumSize(buttonMaxSize);
         playButton.addActionListener(actionEvent -> {
             grid.setRun(true);
-            gridThread.run();
+            gridThread.start();
         });
         buttonPanel.add(playButton);
     }

@@ -1,5 +1,5 @@
-public class GridThread {
-    private static final int DELAY_MS = 5;
+public class GridThread extends Thread{
+    private static final int DELAY_MS = 50;
     private int currentDelay;
 
     private final Grid grid;
@@ -14,7 +14,6 @@ public class GridThread {
     public void run() {
         while (grid.getRun()) {
             grid.getNextGeneration();
-            System.out.println("hey");
             view.repaint();
             try {
                 Thread.sleep(currentDelay);
